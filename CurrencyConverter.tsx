@@ -68,8 +68,8 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
       } catch (error) {
         console.log('Error loading last selection:', error);
       }
-      
-      // Fallback a USD/EUR se non c'è selezione salvata
+
+      // Fallback to USD/EUR if no saved selection
       const usd = currencies.find(c => c.code === 'USD');
       const eur = currencies.find(c => c.code === 'EUR');
       setFromCurrency(usd || currencies[0]);
@@ -78,7 +78,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({
     }
   };
 
-  // Salva la selezione quando cambiano le valute
+  // Save selection when currencies change
   useEffect(() => {
     if (fromCurrency && toCurrency) {
       AsyncStorage.setItem('@last_from_currency', fromCurrency.code);
