@@ -99,33 +99,6 @@ export const Settings: React.FC<SettingsProps> = ({ onUpdate, translations: t, c
     return hoursSinceUpdate > 48;
   };
 
-  const getLanguageName = (lang: string): string => {
-    if (lang === 'it') return t.italian;
-    if (lang === 'en') return t.english;
-    return t.systemLanguage;
-  };
-
-  const handleLanguagePress = () => {
-    Alert.alert(
-      t.languageTitle,
-      '',
-      [
-        {
-          text: '🇮🇹 ' + t.italian,
-          onPress: () => onLanguageChange('it'),
-        },
-        {
-          text: '🇬🇧 ' + t.english,
-          onPress: () => onLanguageChange('en'),
-        },
-        {
-          text: t.cancel,
-          style: 'cancel',
-        },
-      ]
-    );
-  };
-
   return (
     <ScrollView
       style={[styles.container, isDark && styles.containerDark]}
@@ -137,23 +110,39 @@ export const Settings: React.FC<SettingsProps> = ({ onUpdate, translations: t, c
           <Text style={[styles.sectionTitle, isDark && styles.textDark]}> {t.language}</Text>
         </View>
 
-        <TouchableOpacity
-          style={[styles.infoCard, isDark && styles.infoCardDark]}
-          onPress={handleLanguagePress}
-        >
-          <View style={styles.infoRow}>
+        <View style={[styles.infoCard, isDark && styles.infoCardDark]}>
+          <TouchableOpacity
+            style={styles.languageOption}
+            onPress={() => onLanguageChange('it')}
+          >
             <View style={styles.infoLeft}>
-              <MaterialIcons name="translate" size={20} color={isDark ? '#9CA3AF' : '#6B7280'} />
-              <Text style={[styles.infoLabel, isDark && styles.textSecondaryDark]}> {t.languageTitle}</Text>
+              <Text style={styles.flagEmoji}>🇮🇹</Text>
+              <Text style={[styles.languageLabel, isDark && styles.textDark]}>{t.italian}</Text>
             </View>
-            <View style={styles.languageValueContainer}>
-              <Text style={[styles.infoValue, isDark && styles.textDark]}>
-                {getLanguageName(currentLanguage)}
-              </Text>
-              <MaterialIcons name="chevron-right" size={20} color={isDark ? '#6B7280' : '#9CA3AF'} />
+            <MaterialIcons
+              name={currentLanguage === 'it' ? 'radio-button-checked' : 'radio-button-unchecked'}
+              size={24}
+              color={currentLanguage === 'it' ? '#6366F1' : (isDark ? '#6B7280' : '#9CA3AF')}
+            />
+          </TouchableOpacity>
+
+          <View style={styles.infoDivider} />
+
+          <TouchableOpacity
+            style={styles.languageOption}
+            onPress={() => onLanguageChange('en')}
+          >
+            <View style={styles.infoLeft}>
+              <Text style={styles.flagEmoji}>🇬🇧</Text>
+              <Text style={[styles.languageLabel, isDark && styles.textDark]}>{t.english}</Text>
             </View>
-          </View>
-        </TouchableOpacity>
+            <MaterialIcons
+              name={currentLanguage === 'en' ? 'radio-button-checked' : 'radio-button-unchecked'}
+              size={24}
+              color={currentLanguage === 'en' ? '#6366F1' : (isDark ? '#6B7280' : '#9CA3AF')}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <View style={styles.section}>
@@ -357,9 +346,19 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '500',
   },
-  languageValueContainer: {
+  languageOption: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 4,
+    paddingVertical: 12,
+  },
+  languageLabel: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#111827',
+  },
+  flagEmoji: {
+    fontSize: 28,
+    marginRight: 12,
   },
 });
