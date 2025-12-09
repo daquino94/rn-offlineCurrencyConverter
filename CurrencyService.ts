@@ -5,6 +5,7 @@ const STORAGE_KEYS = {
   CURRENCIES: '@currencies_data',
   LAST_UPDATE: '@last_update',
   FAVORITES: '@favorites',
+  LANGUAGE: '@user_language',
 };
 
 // API per ottenere i tassi di cambio (esempio: exchangerate-api.com)
@@ -132,15 +133,38 @@ export class CurrencyService {
   static async toggleFavorite(code: string): Promise<string[]> {
     const favorites = await this.loadFavorites();
     const index = favorites.indexOf(code);
-    
+
     if (index > -1) {
       favorites.splice(index, 1);
     } else {
       favorites.push(code);
     }
-    
+
     await this.saveFavorites(favorites);
     return favorites;
+  }
+
+  /**
+   * Carica la lingua preferita dell'utente
+   */
+  static async loadLanguage(): Promise<string | null> {
+    try {
+      return await AsyncStorage.getItem(STORAGE_KEYS.LANGUAGE);
+    } catch (error) {
+      console.error('Errore caricamento lingua:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Salva la lingua preferita dell'utente
+   */
+  static async saveLanguage(language: string): Promise<void> {
+    try {
+      await AsyncStorage.setItem(STORAGE_KEYS.LANGUAGE, language);
+    } catch (error) {
+      console.error('Errore salvataggio lingua:', error);
+    }
   }
 
   /**
