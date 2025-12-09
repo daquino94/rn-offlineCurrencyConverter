@@ -13,11 +13,11 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { CurrencyConverter } from './CurrencyConverter';
-import { Settings } from './Settings';
-import { CurrencyService } from './CurrencyService';
-import { Currency } from './types';
-import { useTranslations } from './i18n';
+import { CurrencyConverter } from './src/screens/converter/CurrencyConverter';
+import { Settings } from './src/screens/settings/Settings';
+import { CurrencyService } from './src/services/CurrencyService';
+import { Currency } from './src/types';
+import { useTranslations } from './src/localization/i18n';
 
 type Screen = 'converter' | 'settings';
 

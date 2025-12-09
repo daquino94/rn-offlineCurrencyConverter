@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Currency } from './types';
+import { Currency } from '../types';
 
 const STORAGE_KEYS = {
   CURRENCIES: '@currencies_data',

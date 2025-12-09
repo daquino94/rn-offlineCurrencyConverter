@@ -10,8 +10,8 @@ import {
   useColorScheme,
 } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { CurrencyService } from './CurrencyService';
-import { Translations } from './i18n';
+import { CurrencyService } from '../../services/CurrencyService';
+import { Translations } from '../../localization/i18n';
 
 interface SettingsProps {
   onUpdate: () => void;

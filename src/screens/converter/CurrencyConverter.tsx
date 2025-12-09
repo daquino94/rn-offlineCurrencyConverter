@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { Currency } from './types';
-import { CurrencyService } from './CurrencyService';
-import { Translations } from './i18n';
-import { getCurrencyFlag } from './currencyFlags';
+import { Currency } from '../../types';
+import { CurrencyService } from '../../services/CurrencyService';
+import { Translations } from '../../localization/i18n';
+import { getCurrencyFlag } from '../../utils/currencyFlags';
 
 interface CurrencyConverterProps {
   currencies: Currency[];
