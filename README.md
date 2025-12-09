@@ -1,7 +1,7 @@
 # 💱 CurrencyOffline
 
-**Un Convertitore di Valute Offline Completo**
-Un'app mobile che permette di convertire valute in tempo reale con supporto offline completo. I tassi di cambio vengono salvati localmente per essere sempre accessibili, anche senza connessione internet.
+**A Complete Offline Currency Converter**
+A mobile app that allows real-time currency conversion with full offline support. Exchange rates are saved locally to be always accessible, even without an internet connection.
 
 ![React Native](https://img.shields.io/badge/React%20Native-0.82-61DAFB?style=flat&logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat&logo=typescript) ![AsyncStorage](https://img.shields.io/badge/AsyncStorage-1.21-orange?style=flat) ![iOS](https://img.shields.io/badge/iOS-Compatible-000000?style=flat&logo=apple) ![Android](https://img.shields.io/badge/Android-Compatible-3DDC84?style=flat&logo=android)
 
@@ -9,280 +9,280 @@ Un'app mobile che permette di convertire valute in tempo reale con supporto offl
 
 ## ✨ Features
 
-- 💱 **Conversione in Tempo Reale**: Converti tra oltre 150+ valute internazionali
-- 🔌 **Funzionamento Offline**: I tassi di cambio vengono salvati localmente per l'uso offline
-- ⭐ **Gestione Preferiti**: Salva le tue valute preferite per un accesso rapido
-- 🌍 **Supporto Multi-lingua**: Interfaccia disponibile in Italiano e Inglese
-- 🌙 **Dark Mode**: Tema scuro automatico basato sulle impostazioni di sistema
-- 🔄 **Aggiornamento Automatico**: Notifica quando i tassi non sono stati aggiornati da più di 48 ore
-- 📱 **Design Moderno**: UI elegante e responsive con Material Icons
-- 🚀 **Performance Ottimizzate**: Caricamento veloce e navigazione fluida
-- 💾 **Storage Locale**: Tutti i dati salvati localmente con AsyncStorage
-- 🎯 **Zero Configurazione**: Pronta all'uso con tassi di cambio predefiniti
+- 💱 **Real-Time Conversion**: Convert between 150+ international currencies
+- 🔌 **Offline Functionality**: Exchange rates saved locally for offline use
+- ⭐ **Favorites Management**: Save your favorite currencies for quick access
+- 🌍 **Multi-language Support**: Interface available in Italian and English
+- 🌙 **Dark Mode**: Automatic dark theme based on system settings
+- 🔄 **Automatic Updates**: Notification when rates haven't been updated for over 48 hours
+- 📱 **Modern Design**: Elegant and responsive UI with Material Icons
+- 🚀 **Optimized Performance**: Fast loading and smooth navigation
+- 💾 **Local Storage**: All data saved locally with AsyncStorage
+- 🎯 **Zero Configuration**: Ready to use with predefined exchange rates
 
 ---
 
 ## 📋 Roadmap
 
-Ecco le funzionalità in arrivo per CurrencyOffline:
+Here are the upcoming features for CurrencyOffline:
 
 | Feature | Status |
 |---------|--------|
-| **Supporto Offline** | ✅ |
+| **Offline Support** | ✅ |
 | **Dark Mode** | ✅ |
-| **Multi-lingua (IT/EN)** | ✅ |
-| **Sistema Preferiti** | ✅ |
-| **Grafici Storici Tassi** | 📋 |
-| **Widget Home Screen** | 📋 |
-| **Più Lingue (ES, FR, DE)** | 📋 |
-| **Export/Import Preferiti** | 📋 |
-| **Notifiche Tassi Cambio** | 💡 |
-| **Calcolatrice Integrata** | 💡 |
+| **Multi-language (IT/EN)** | ✅ |
+| **Favorites System** | ✅ |
+| **Historical Rate Charts** | 📋 |
+| **Home Screen Widget** | 📋 |
+| **More Languages (ES, FR, DE)** | 📋 |
+| **Export/Import Favorites** | 📋 |
+| **Exchange Rate Notifications** | 💡 |
+| **Integrated Calculator** | 💡 |
 
-**Legenda:**
-- ✅ Completato
-- 🔄 In Sviluppo
-- 📋 Pianificato
-- 💡 Fase di Ricerca
+**Legend:**
+- ✅ Completed
+- 🔄 In Development
+- 📋 Planned
+- 💡 Research Phase
 
 ---
 
-## 🌍 Lingue Supportate
+## 🌍 Supported Languages
 
-| Lingua | Status | Completamento |
+| Language | Status | Completion |
 |--------|--------|---------------|
-| 🇮🇹 Italiano | ✅ Completo | 100% (Nativo) |
-| 🇺🇸 Inglese | ✅ Completo | 100% (Nativo) |
-| 🇪🇸 Spagnolo | 📋 Pianificato | 0% |
-| 🇫🇷 Francese | 📋 Pianificato | 0% |
-| 🇩🇪 Tedesco | 📋 Pianificato | 0% |
+| 🇮🇹 Italian | ✅ Complete | 100% (Native) |
+| 🇺🇸 English | ✅ Complete | 100% (Native) |
+| 🇪🇸 Spanish | 📋 Planned | 0% |
+| 🇫🇷 French | 📋 Planned | 0% |
+| 🇩🇪 German | 📋 Planned | 0% |
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisiti
+### Prerequisites
 
-Assicurati di avere installato:
+Make sure you have installed:
 
-- **Node.js**: 20.0+ e npm
+- **Node.js**: 20.0+ and npm
 - **React Native CLI**: `npm install -g @react-native-community/cli`
-- **Android Studio** (per Android) o **Xcode** (per iOS)
+- **Android Studio** (for Android) or **Xcode** (for iOS)
 
-> **Nota**: Segui la [guida ufficiale React Native](https://reactnative.dev/docs/set-up-your-environment) per configurare il tuo ambiente di sviluppo.
+> **Note**: Follow the [official React Native guide](https://reactnative.dev/docs/set-up-your-environment) to set up your development environment.
 
 ---
 
-### Opzione 1: Sviluppo Locale (Android)
+### Option 1: Local Development (Android)
 
-1. **Clona la repository:**
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/daquino94/rn-offlineCurrencyConverter.git
    cd rn-offlineCurrencyConverter
    ```
 
-2. **Installa le dipendenze:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Avvia Metro bundler:**
+3. **Start Metro bundler:**
    ```bash
    npm start
    ```
 
-4. **Avvia l'app su Android:**
+4. **Run the app on Android:**
    ```bash
-   # In un nuovo terminale
+   # In a new terminal
    npm run android
    ```
 
 ---
 
-### Opzione 2: Sviluppo Locale (iOS)
+### Option 2: Local Development (iOS)
 
-1. **Clona e installa** (come sopra, step 1-2)
+1. **Clone and install** (as above, steps 1-2)
 
-2. **Installa i Pod di CocoaPods:**
+2. **Install CocoaPods dependencies:**
    ```bash
    cd ios
    pod install
    cd ..
    ```
 
-3. **Avvia Metro bundler:**
+3. **Start Metro bundler:**
    ```bash
    npm start
    ```
 
-4. **Avvia l'app su iOS:**
+4. **Run the app on iOS:**
    ```bash
-   # In un nuovo terminale
+   # In a new terminal
    npm run ios
    ```
 
 ---
 
-### Opzione 3: Build di Produzione
+### Option 3: Production Build
 
 **Android:**
 ```bash
 cd android
 ./gradlew assembleRelease
-# L'APK sarà in: android/app/build/outputs/apk/release/
+# APK will be in: android/app/build/outputs/apk/release/
 ```
 
 **iOS:**
 ```bash
-# Apri il progetto in Xcode
+# Open the project in Xcode
 open ios/AwesomeProject.xcworkspace
-# Poi: Product > Archive
+# Then: Product > Archive
 ```
 
 ---
 
-## 🏗️ Architettura
+## 🏗️ Architecture
 
-### Struttura del Progetto
+### Project Structure
 
 ```
 rn-offlineCurrencyConverter/
-├── App.tsx                    # Componente principale con navigazione
-├── CurrencyConverter.tsx      # Schermata convertitore valute
-├── Settings.tsx               # Schermata impostazioni
-├── CurrencyService.ts         # Service per API e storage
-├── i18n.ts                    # Sistema internazionalizzazione
+├── App.tsx                    # Main component with navigation
+├── CurrencyConverter.tsx      # Currency converter screen
+├── Settings.tsx               # Settings screen
+├── CurrencyService.ts         # Service for API and storage
+├── i18n.ts                    # Internationalization system
 ├── Types.ts                   # TypeScript type definitions
-├── currencyFlags.ts           # Bandiere valute
-├── android/                   # Configurazione Android
-├── ios/                       # Configurazione iOS
-└── __tests__/                 # Test unitari
+├── currencyFlags.ts           # Currency flags
+├── android/                   # Android configuration
+├── ios/                       # iOS configuration
+└── __tests__/                 # Unit tests
 ```
 
-### Componenti Principali
+### Main Components
 
-- **App.tsx**: Gestisce la navigazione tra le schermate e lo stato globale
-- **CurrencyConverter**: Interfaccia di conversione con ricerca e preferiti
-- **Settings**: Aggiornamento tassi, gestione lingua e informazioni
-- **CurrencyService**: Logica per fetch API, conversione e storage locale
+- **App.tsx**: Manages navigation between screens and global state
+- **CurrencyConverter**: Conversion interface with search and favorites
+- **Settings**: Rate updates, language management, and information
+- **CurrencyService**: Logic for API fetch, conversion, and local storage
 
 ---
 
-## 🛠️ Stack Tecnologico
+## 🛠️ Technology Stack
 
-| Tecnologia | Descrizione | Versione |
+| Technology | Description | Version |
 |------------|-------------|----------|
-| **React Native** | Framework mobile cross-platform | 0.82.1 |
-| **TypeScript** | Type safety e migliore DX | 5.8+ |
-| **AsyncStorage** | Storage locale persistente | 1.21.0 |
-| **Vector Icons** | Icone Material Design | 10.3.0 |
-| **ExchangeRate API** | API per tassi di cambio in tempo reale | v4 |
+| **React Native** | Cross-platform mobile framework | 0.82.1 |
+| **TypeScript** | Type safety and better DX | 5.8+ |
+| **AsyncStorage** | Persistent local storage | 1.21.0 |
+| **Vector Icons** | Material Design icons | 10.3.0 |
+| **ExchangeRate API** | Real-time exchange rate API | v4 |
 
-### API Utilizzate
+### APIs Used
 
 - **ExchangeRate-API**: [https://www.exchangerate-api.com](https://www.exchangerate-api.com)
   - Endpoint: `https://api.exchangerate-api.com/v4/latest/USD`
-  - Gratuito, nessuna API key richiesta
-  - Supporta 150+ valute
+  - Free, no API key required
+  - Supports 150+ currencies
 
 ---
 
-## ⚙️ Configurazione
+## ⚙️ Configuration
 
-### Variabili d'Ambiente
+### Environment Variables
 
-L'app non richiede configurazione aggiuntiva per funzionare. Tuttavia, puoi personalizzare:
+The app doesn't require additional configuration to work. However, you can customize:
 
-**Modifica l'API dei tassi di cambio** in `CurrencyService.ts:12`:
+**Change the exchange rate API** in `CurrencyService.ts:12`:
 ```typescript
 const API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
 ```
 
 ### Storage Keys
 
-I dati vengono salvati in AsyncStorage con le seguenti chiavi:
+Data is saved in AsyncStorage with the following keys:
 
 ```typescript
 {
-  CURRENCIES: '@currencies_data',      // Database valute
-  LAST_UPDATE: '@last_update',         // Timestamp ultimo aggiornamento
-  FAVORITES: '@favorites',             // Codici valute preferite
-  LANGUAGE: '@user_language',          // Lingua preferita (it/en)
+  CURRENCIES: '@currencies_data',      // Currency database
+  LAST_UPDATE: '@last_update',         // Last update timestamp
+  FAVORITES: '@favorites',             // Favorite currency codes
+  LANGUAGE: '@user_language',          // Preferred language (it/en)
 }
 ```
 
 ---
 
-## 🎨 Personalizzazione
+## 🎨 Customization
 
-### Modificare le Valute Predefinite
+### Modify Default Currencies
 
-Modifica il metodo `getDefaultCurrencies()` in `CurrencyService.ts:173`:
+Edit the `getDefaultCurrencies()` method in `CurrencyService.ts:173`:
 
 ```typescript
 private static getDefaultCurrencies(): Currency[] {
   return [
-    { code: 'USD', name: 'Dollaro Americano', symbol: '$', rate: 1.0 },
+    { code: 'USD', name: 'US Dollar', symbol: '$', rate: 1.0 },
     { code: 'EUR', name: 'Euro', symbol: '€', rate: 0.92 },
-    // Aggiungi altre valute...
+    // Add more currencies...
   ];
 }
 ```
 
-### Aggiungere una Nuova Lingua
+### Add a New Language
 
-1. Aggiungi le traduzioni in `i18n.ts`:
+1. Add translations in `i18n.ts`:
    ```typescript
    export const translations: Record<string, Translations> = {
-     it: { /* traduzioni italiane */ },
-     en: { /* traduzioni inglesi */ },
-     es: { /* traduzioni spagnole */ },  // Nuova lingua
+     it: { /* Italian translations */ },
+     en: { /* English translations */ },
+     es: { /* Spanish translations */ },  // New language
    };
    ```
 
-2. Aggiorna il componente `Settings.tsx` per includere la nuova opzione
+2. Update the `Settings.tsx` component to include the new option
 
 ---
 
-## 🤝 Come Contribuire
+## 🤝 Contributing
 
-Contributi sono benvenuti! Ecco come puoi aiutare:
+Contributions are welcome! Here's how you can help:
 
-### Modi per Contribuire
+### Ways to Contribute
 
-- 🌍 **Traduzioni**: Aiuta a tradurre l'app in nuove lingue
-- 📝 **Miglioramenti UI/UX**: Suggerisci o implementa miglioramenti al design
-- 🐛 **Bug Reports**: Segnala problemi che riscontri
-- 💡 **Feature Requests**: Proponi nuove funzionalità
-- 🔧 **Codice**: Invia pull request con miglioramenti
+- 🌍 **Translations**: Help translate the app into new languages
+- 📝 **UI/UX Improvements**: Suggest or implement design improvements
+- 🐛 **Bug Reports**: Report issues you encounter
+- 💡 **Feature Requests**: Propose new features
+- 🔧 **Code**: Submit pull requests with improvements
 
-### Workflow di Sviluppo
+### Development Workflow
 
-1. **Fork** la repository
-2. **Crea** un branch: `git checkout -b feature/amazing-feature`
-3. **Committa** le modifiche: `git commit -m 'Add amazing feature'`
-4. **Testa** accuratamente le modifiche
-5. **Push** al branch: `git push origin feature/amazing-feature`
-6. **Apri** una Pull Request
+1. **Fork** the repository
+2. **Create** a branch: `git checkout -b feature/amazing-feature`
+3. **Commit** changes: `git commit -m 'Add amazing feature'`
+4. **Test** thoroughly
+5. **Push** to branch: `git push origin feature/amazing-feature`
+6. **Open** a Pull Request
 
-### Standard di Codice
+### Code Standards
 
-- Usa **TypeScript** per type safety
-- Segui le convenzioni **ESLint** configurate
-- Formatta il codice con **Prettier**
-- Aggiungi test per nuove funzionalità
+- Use **TypeScript** for type safety
+- Follow configured **ESLint** conventions
+- Format code with **Prettier**
+- Add tests for new features
 
 ---
 
 ## 🧪 Testing
 
-Esegui i test con:
+Run tests with:
 
 ```bash
 npm test
 ```
 
-Esegui il linter:
+Run the linter:
 
 ```bash
 npm run lint
@@ -290,44 +290,44 @@ npm run lint
 
 ---
 
-## 📱 Screenshot
+## 📱 Screenshots
 
-*Coming soon - Screenshots dell'app in azione*
-
----
-
-## 📄 Licenza
-
-Questo progetto è distribuito sotto licenza **MIT** - vedi il file [LICENSE](LICENSE) per i dettagli.
+*Coming soon - Screenshots of the app in action*
 
 ---
 
-## 🙏 Riconoscimenti
+## 📄 License
 
-- **[ExchangeRate-API](https://www.exchangerate-api.com)**: Per i tassi di cambio gratuiti
-- **[React Native Community](https://github.com/react-native-community)**: Per gli strumenti e le librerie
-- **[Material Icons](https://materialdesignicons.com)**: Per le icone utilizzate nell'app
-- **Tutti i contributori**: Chiunque abbia contribuito a migliorare questo progetto
+This project is distributed under the **MIT** license - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📞 Supporto
+## 🙏 Acknowledgments
 
-- 📖 **Documentazione**: Leggi il codice e i commenti inline
-- 🐛 **Issues**: Segnala problemi su [GitHub Issues](https://github.com/daquino94/rn-offlineCurrencyConverter/issues)
-- 💬 **Discussioni**: Partecipa alle discussioni nella sezione GitHub Discussions
-- 📧 **Contatti**: Contatta i maintainer per domande
+- **[ExchangeRate-API](https://www.exchangerate-api.com)**: For free exchange rates
+- **[React Native Community](https://github.com/react-native-community)**: For tools and libraries
+- **[Material Icons](https://materialdesignicons.com)**: For the icons used in the app
+- **All contributors**: Everyone who has contributed to improving this project
 
 ---
 
-## 🌟 Se ti piace questo progetto
+## 📞 Support
 
-Se trovi utile **CurrencyOffline**, considera di:
+- 📖 **Documentation**: Read the code and inline comments
+- 🐛 **Issues**: Report problems on [GitHub Issues](https://github.com/daquino94/rn-offlineCurrencyConverter/issues)
+- 💬 **Discussions**: Participate in discussions in the GitHub Discussions section
+- 📧 **Contact**: Contact maintainers for questions
 
-- ⭐ Dare una stella alla repository
-- 🍴 Fare fork per i tuoi progetti
-- 🐦 Condividere con altri sviluppatori
-- 🤝 Contribuire con codice o traduzioni
+---
+
+## 🌟 If you like this project
+
+If you find **CurrencyOffline** useful, consider:
+
+- ⭐ Starring the repository
+- 🍴 Forking for your projects
+- 🐦 Sharing with other developers
+- 🤝 Contributing with code or translations
 
 ---
 

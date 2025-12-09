@@ -8,24 +8,24 @@ const STORAGE_KEYS = {
   LANGUAGE: '@user_language',
 };
 
-// API per ottenere i tassi di cambio (esempio: exchangerate-api.com)
+// API to get exchange rates (example: exchangerate-api.com)
 const API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
 
 export class CurrencyService {
   /**
-   * Scarica e aggiorna il database delle valute dall'API
+   * Downloads and updates the currency database from the API
    */
   static async updateCurrencies(): Promise<{ success: boolean; error?: string }> {
     try {
       const response = await fetch(API_URL);
-      
+
       if (!response.ok) {
-        throw new Error('Errore nel download dei dati');
+        throw new Error('Error downloading data');
       }
 
       const data = await response.json();
-      
-      // Trasforma i dati in formato Currency[]
+
+      // Transform data to Currency[] format
       const currencies: Currency[] = Object.entries(data.rates).map(
         ([code, rate]) => ({
           code,
@@ -35,7 +35,7 @@ export class CurrencyService {
         })
       );
 
-      // Salva nel database locale
+      // Save to local database
       await AsyncStorage.setItem(
         STORAGE_KEYS.CURRENCIES,
         JSON.stringify(currencies)
@@ -47,16 +47,16 @@ export class CurrencyService {
 
       return { success: true };
     } catch (error) {
-      console.error('Errore aggiornamento valute:', error);
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : 'Errore sconosciuto' 
+      console.error('Error updating currencies:', error);
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error'
       };
     }
   }
 
   /**
-   * Carica le valute dal database locale
+   * Loads currencies from local database
    */
   static async loadCurrencies(): Promise<Currency[]> {
     try {
@@ -64,57 +64,57 @@ export class CurrencyService {
       if (data) {
         return JSON.parse(data);
       }
-      
-      // Se non ci sono dati, restituisce valute di default
+
+      // If no data, return default currencies
       return this.getDefaultCurrencies();
     } catch (error) {
-      console.error('Errore caricamento valute:', error);
+      console.error('Error loading currencies:', error);
       return this.getDefaultCurrencies();
     }
   }
 
   /**
-   * Ottiene la data dell'ultimo aggiornamento
+   * Gets the last update date
    */
   static async getLastUpdate(): Promise<Date | null> {
     try {
       const dateString = await AsyncStorage.getItem(STORAGE_KEYS.LAST_UPDATE);
       return dateString ? new Date(dateString) : null;
     } catch (error) {
-      console.error('Errore recupero ultima data:', error);
+      console.error('Error getting last update date:', error);
       return null;
     }
   }
 
   /**
-   * Converte un importo da una valuta a un'altra
+   * Converts an amount from one currency to another
    */
   static convert(
     amount: number,
     fromCurrency: Currency,
     toCurrency: Currency
   ): number {
-    // Converti in USD come base
+    // Convert to USD as base
     const amountInUSD = amount / fromCurrency.rate;
-    // Converti da USD alla valuta di destinazione
+    // Convert from USD to target currency
     return amountInUSD * toCurrency.rate;
   }
 
   /**
-   * Carica le valute preferite
+   * Loads favorite currencies
    */
   static async loadFavorites(): Promise<string[]> {
     try {
       const data = await AsyncStorage.getItem(STORAGE_KEYS.FAVORITES);
       return data ? JSON.parse(data) : [];
     } catch (error) {
-      console.error('Errore caricamento preferiti:', error);
+      console.error('Error loading favorites:', error);
       return [];
     }
   }
 
   /**
-   * Salva le valute preferite
+   * Saves favorite currencies
    */
   static async saveFavorites(favorites: string[]): Promise<void> {
     try {
@@ -123,12 +123,12 @@ export class CurrencyService {
         JSON.stringify(favorites)
       );
     } catch (error) {
-      console.error('Errore salvataggio preferiti:', error);
+      console.error('Error saving favorites:', error);
     }
   }
 
   /**
-   * Aggiunge o rimuove una valuta dai preferiti
+   * Adds or removes a currency from favorites
    */
   static async toggleFavorite(code: string): Promise<string[]> {
     const favorites = await this.loadFavorites();
@@ -145,90 +145,90 @@ export class CurrencyService {
   }
 
   /**
-   * Carica la lingua preferita dell'utente
+   * Loads user's preferred language
    */
   static async loadLanguage(): Promise<string | null> {
     try {
       return await AsyncStorage.getItem(STORAGE_KEYS.LANGUAGE);
     } catch (error) {
-      console.error('Errore caricamento lingua:', error);
+      console.error('Error loading language:', error);
       return null;
     }
   }
 
   /**
-   * Salva la lingua preferita dell'utente
+   * Saves user's preferred language
    */
   static async saveLanguage(language: string): Promise<void> {
     try {
       await AsyncStorage.setItem(STORAGE_KEYS.LANGUAGE, language);
     } catch (error) {
-      console.error('Errore salvataggio lingua:', error);
+      console.error('Error saving language:', error);
     }
   }
 
   /**
-   * Valute di default da usare se non ci sono dati
+   * Default currencies to use if no data is available
    */
   private static getDefaultCurrencies(): Currency[] {
     return [
-      { code: 'USD', name: 'Dollaro Americano', symbol: '$', rate: 1.0 },
+      { code: 'USD', name: 'US Dollar', symbol: '$', rate: 1.0 },
       { code: 'EUR', name: 'Euro', symbol: '€', rate: 0.92 },
-      { code: 'GBP', name: 'Sterlina Britannica', symbol: '£', rate: 0.79 },
-      { code: 'JPY', name: 'Yen Giapponese', symbol: '¥', rate: 149.5 },
-      { code: 'CHF', name: 'Franco Svizzero', symbol: 'CHF', rate: 0.88 },
-      { code: 'CAD', name: 'Dollaro Canadese', symbol: 'C$', rate: 1.36 },
-      { code: 'AUD', name: 'Dollaro Australiano', symbol: 'A$', rate: 1.53 },
-      { code: 'CNY', name: 'Yuan Cinese', symbol: '¥', rate: 7.24 },
-      { code: 'INR', name: 'Rupia Indiana', symbol: '₹', rate: 83.2 },
-      { code: 'BRL', name: 'Real Brasiliano', symbol: 'R$', rate: 4.97 },
+      { code: 'GBP', name: 'British Pound', symbol: '£', rate: 0.79 },
+      { code: 'JPY', name: 'Japanese Yen', symbol: '¥', rate: 149.5 },
+      { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF', rate: 0.88 },
+      { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', rate: 1.36 },
+      { code: 'AUD', name: 'Australian Dollar', symbol: 'A$', rate: 1.53 },
+      { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', rate: 7.24 },
+      { code: 'INR', name: 'Indian Rupee', symbol: '₹', rate: 83.2 },
+      { code: 'BRL', name: 'Brazilian Real', symbol: 'R$', rate: 4.97 },
     ];
   }
 
   /**
-   * Ottiene il nome completo della valuta
+   * Gets the full currency name
    */
   private static getCurrencyName(code: string): string {
     const names: { [key: string]: string } = {
-      USD: 'Dollaro Americano',
+      USD: 'US Dollar',
       EUR: 'Euro',
-      GBP: 'Sterlina Britannica',
-      JPY: 'Yen Giapponese',
-      CHF: 'Franco Svizzero',
-      CAD: 'Dollaro Canadese',
-      AUD: 'Dollaro Australiano',
-      CNY: 'Yuan Cinese',
-      INR: 'Rupia Indiana',
-      BRL: 'Real Brasiliano',
-      RUB: 'Rublo Russo',
-      KRW: 'Won Sud Coreano',
-      MXN: 'Peso Messicano',
-      ZAR: 'Rand Sudafricano',
-      SGD: 'Dollaro di Singapore',
-      HKD: 'Dollaro di Hong Kong',
-      NOK: 'Corona Norvegese',
-      SEK: 'Corona Svedese',
-      DKK: 'Corona Danese',
-      PLN: 'Zloty Polacco',
-      THB: 'Baht Thailandese',
-      IDR: 'Rupia Indonesiana',
-      HUF: 'Fiorino Ungherese',
-      CZK: 'Corona Ceca',
-      ILS: 'Shekel Israeliano',
-      CLP: 'Peso Cileno',
-      PHP: 'Peso Filippino',
-      AED: 'Dirham degli Emirati',
-      SAR: 'Riyal Saudita',
-      MYR: 'Ringgit Malese',
-      TRY: 'Lira Turca',
-      ARS: 'Peso Argentino',
-      NZD: 'Dollaro Neozelandese',
+      GBP: 'British Pound',
+      JPY: 'Japanese Yen',
+      CHF: 'Swiss Franc',
+      CAD: 'Canadian Dollar',
+      AUD: 'Australian Dollar',
+      CNY: 'Chinese Yuan',
+      INR: 'Indian Rupee',
+      BRL: 'Brazilian Real',
+      RUB: 'Russian Ruble',
+      KRW: 'South Korean Won',
+      MXN: 'Mexican Peso',
+      ZAR: 'South African Rand',
+      SGD: 'Singapore Dollar',
+      HKD: 'Hong Kong Dollar',
+      NOK: 'Norwegian Krone',
+      SEK: 'Swedish Krona',
+      DKK: 'Danish Krone',
+      PLN: 'Polish Zloty',
+      THB: 'Thai Baht',
+      IDR: 'Indonesian Rupiah',
+      HUF: 'Hungarian Forint',
+      CZK: 'Czech Koruna',
+      ILS: 'Israeli Shekel',
+      CLP: 'Chilean Peso',
+      PHP: 'Philippine Peso',
+      AED: 'UAE Dirham',
+      SAR: 'Saudi Riyal',
+      MYR: 'Malaysian Ringgit',
+      TRY: 'Turkish Lira',
+      ARS: 'Argentine Peso',
+      NZD: 'New Zealand Dollar',
     };
     return names[code] || code;
   }
 
   /**
-   * Ottiene il simbolo della valuta
+   * Gets the currency symbol
    */
   private static getCurrencySymbol(code: string): string {
     const symbols: { [key: string]: string } = {

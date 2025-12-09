@@ -58,7 +58,7 @@ export default function App() {
       CurrencyService.loadLanguage(),
     ]);
 
-    // Se c'è una lingua salvata, usala. Altrimenti usa quella del device
+    // If there's a saved language, use it. Otherwise use device language
     if (savedLanguage) {
       setLocale(savedLanguage);
     }
