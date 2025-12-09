@@ -16,9 +16,11 @@ import { Translations } from './i18n';
 interface SettingsProps {
   onUpdate: () => void;
   translations: Translations;
+  currentLanguage: string;
+  onLanguageChange: (language: string) => void;
 }
 
-export const Settings: React.FC<SettingsProps> = ({ onUpdate, translations: t }) => {
+export const Settings: React.FC<SettingsProps> = ({ onUpdate, translations: t, currentLanguage, onLanguageChange }) => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
 
@@ -97,11 +99,54 @@ export const Settings: React.FC<SettingsProps> = ({ onUpdate, translations: t })
     return hoursSinceUpdate > 48;
   };
 
+  const getLanguageName = (lang: string): string => {
+    if (lang === 'it') return t.italian;
+    if (lang === 'en') return t.english;
+    return t.systemLanguage;
+  };
+
   return (
-    <ScrollView 
+    <ScrollView
       style={[styles.container, isDark && styles.containerDark]}
       showsVerticalScrollIndicator={false}
     >
+      <View style={styles.section}>
+        <View style={styles.sectionTitleRow}>
+          <MaterialIcons name="language" size={24} color={isDark ? '#F9FAFB' : '#111827'} />
+          <Text style={[styles.sectionTitle, isDark && styles.textDark]}> {t.language}</Text>
+        </View>
+
+        <View style={[styles.infoCard, isDark && styles.infoCardDark]}>
+          <TouchableOpacity
+            style={styles.languageOption}
+            onPress={() => onLanguageChange('it')}
+          >
+            <View style={styles.infoLeft}>
+              <Text style={styles.flagEmoji}>🇮🇹</Text>
+              <Text style={[styles.languageLabel, isDark && styles.textDark]}>{t.italian}</Text>
+            </View>
+            {currentLanguage === 'it' && (
+              <MaterialIcons name="check-circle" size={24} color="#6366F1" />
+            )}
+          </TouchableOpacity>
+
+          <View style={styles.infoDivider} />
+
+          <TouchableOpacity
+            style={styles.languageOption}
+            onPress={() => onLanguageChange('en')}
+          >
+            <View style={styles.infoLeft}>
+              <Text style={styles.flagEmoji}>🇬🇧</Text>
+              <Text style={[styles.languageLabel, isDark && styles.textDark]}>{t.english}</Text>
+            </View>
+            {currentLanguage === 'en' && (
+              <MaterialIcons name="check-circle" size={24} color="#6366F1" />
+            )}
+          </TouchableOpacity>
+        </View>
+      </View>
+
       <View style={styles.section}>
         <View style={styles.sectionTitleRow}>
           <MaterialIcons name="storage" size={24} color={isDark ? '#F9FAFB' : '#111827'} />
@@ -302,5 +347,20 @@ const styles = StyleSheet.create({
     color: '#6B7280',
     lineHeight: 20,
     fontWeight: '500',
+  },
+  languageOption: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 12,
+  },
+  languageLabel: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#111827',
+  },
+  flagEmoji: {
+    fontSize: 28,
+    marginRight: 12,
   },
 });

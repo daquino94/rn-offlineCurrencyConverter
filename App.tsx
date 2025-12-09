@@ -37,7 +37,7 @@ const getDeviceLocale = (): string => {
 export default function App() {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const [locale] = useState(getDeviceLocale());
+  const [locale, setLocale] = useState(getDeviceLocale());
   const t = useTranslations(locale);
 
   const [currentScreen, setCurrentScreen] = useState<Screen>('converter');
@@ -51,17 +51,23 @@ export default function App() {
 
   const initializeApp = async () => {
     setIsLoading(true);
-    
-    const [loadedCurrencies, loadedFavorites] = await Promise.all([
+
+    const [loadedCurrencies, loadedFavorites, savedLanguage] = await Promise.all([
       CurrencyService.loadCurrencies(),
       CurrencyService.loadFavorites(),
+      CurrencyService.loadLanguage(),
     ]);
+
+    // Se c'è una lingua salvata, usala. Altrimenti usa quella del device
+    if (savedLanguage) {
+      setLocale(savedLanguage);
+    }
 
     setCurrencies(loadedCurrencies);
     setFavorites(loadedFavorites);
-    
+
     await checkUpdateRequired();
-    
+
     setIsLoading(false);
   };
 
@@ -110,6 +116,11 @@ export default function App() {
     setCurrencies(updatedCurrencies);
   };
 
+  const handleLanguageChange = async (newLanguage: string) => {
+    await CurrencyService.saveLanguage(newLanguage);
+    setLocale(newLanguage);
+  };
+
   if (isLoading) {
     return (
       <SafeAreaView style={[styles.container, isDark && styles.containerDark]}>
@@ -143,9 +154,11 @@ export default function App() {
             translations={t}
           />
         ) : (
-          <Settings 
-            onUpdate={handleCurrenciesUpdate} 
+          <Settings
+            onUpdate={handleCurrenciesUpdate}
             translations={t}
+            currentLanguage={locale}
+            onLanguageChange={handleLanguageChange}
           />
         )}
       </View>
